@@ -1,0 +1,9 @@
+{
+  "web": {
+    "email": "",
+    "password": ""
+  },
+  "api": {
+    "User-Key": ""
+  }
+}

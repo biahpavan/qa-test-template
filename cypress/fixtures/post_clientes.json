@@ -1,0 +1,17 @@
+{
+    "Name": "Pessoa Nova Automation",
+    "Neighborhood": "Flores",
+    "ZipCode": 83324440,
+    "Register": "69971558000110",
+    "OriginId": 0,
+    "CompanyId": null,
+    "StreetAddressNumber": "1000",
+    "TypeId": 0,
+    "Phones": [
+        {
+            "PhoneNumber": "(11) 991223344",
+            "TypeId": 0,
+            "CountryId": 0
+        }
+    ]
+}

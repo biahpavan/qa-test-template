@@ -1,3 +1,3 @@
 node_modules
-fixtures/cliente.json
-fixtures/negocio.json
+cypress/fixtures/cliente.json
+cypress/fixtures/negocio.json

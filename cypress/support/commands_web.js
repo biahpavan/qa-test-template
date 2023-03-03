@@ -1,0 +1,25 @@
+Cypress.Commands.add('login', (credenciaisData) => {
+    cy.visit('https://app10.ploomes.com/login')
+    Cypress.on('uncaught:exception', () => false)
+    cy.get('#email').type(credenciaisData.web.email)
+    cy.get('#password').type(credenciaisData.web.password)
+    cy.contains('span', 'Entrar').click()
+    cy.contains('span', credenciaisData.web.nome, { timeout: 8000 })
+        .should('be.visible')
+    cy.log('Login realizado com o usuário: ' + credenciaisData.web.nome)
+})
+
+Cypress.Commands.add('criaNovoCliente', (credenciaisData, nameCli) => {
+    cy.login(credenciaisData)
+    cy.contains('span', 'Clientes').click()
+    cy.get('#filter-list').click()
+    cy.contains('aside', 'Pessoa').click()
+    cy.get('input[name=contact_name]').type(nameCli)
+    cy.writeFile('cypress/fixtures/cliente.json', '{"nome": "' + nameCli + '"}')
+    cy.contains('button', 'Salvar').click()
+    cy.get('div[class="font-very-big"]')
+        .should('be.visible')
+        .should('have.text', nameCli)
+    cy.log('Novo cliente criado ' + nameCli)
+})
+

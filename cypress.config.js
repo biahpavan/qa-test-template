@@ -2,7 +2,6 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://www.ploomes.com/versao-trial',
     env:  {
       apiUri: 'https://api2.ploomes.com'
     },

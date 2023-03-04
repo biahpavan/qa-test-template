@@ -3,7 +3,7 @@ Cypress.Commands.add('postContacts', (credenciaisData, postData) => {
         url: Cypress.env('apiUri') + '/Contacts',
         method: 'POST',
         body: postData,
-        headers: credenciaisData.api
+        headers: {"User-Key": credenciaisData.api.userKey}
     }).then(response => {
         expect(response.status).to.eq(200)
         expect(response.body.value[0].Name).to.eq(postData.Name)
@@ -18,7 +18,7 @@ Cypress.Commands.add('patchContacts', (credenciaisData, id, name) => {
         url: Cypress.env('apiUri') + '/Contacts(' + id + ')',
         method: 'PATCH',
         body: { Name: name},
-        headers: credenciaisData.api
+        headers: {"User-Key": credenciaisData.api.userKey}
     }).then(response => {
         expect(response.status).to.eq(200)
         expect(response.body.value[0].Name).to.eq(name)
@@ -30,7 +30,7 @@ Cypress.Commands.add('deleteContacts', (credenciaisData, id) => {
     cy.request({
         url: Cypress.env('apiUri') + '/Contacts(' + id + ')',
         method: 'DELETE',
-        headers: credenciaisData.api
+        headers: {"User-Key": credenciaisData.api.userKey}
     }).then(response => {
         expect(response.status).to.eq(200)
     })
@@ -40,7 +40,7 @@ Cypress.Commands.add('getContacts', (credenciaisData) => {
     cy.request({
         url: Cypress.env('apiUri') + '/Contacts',
         method: 'GET',
-        headers: credenciaisData.api
+        headers: {"User-Key": credenciaisData.api.userKey}
     }).then(response => {
         expect(response.status).to.eq(200)
     })
@@ -51,7 +51,7 @@ Cypress.Commands.add('postDeals', (credenciaisData, postData) => {
         url: Cypress.env('apiUri') + '/Deals',
         method: 'POST',
         body: postData,
-        headers: credenciaisData.api
+        headers: {"User-Key": credenciaisData.api.userKey}
     }).then(response => {
         expect(response.status).to.eq(200)
         expect(response.body.value[0].Title).to.eq(postData.Title)
@@ -65,7 +65,7 @@ Cypress.Commands.add('patchDeals', (credenciaisData, id, title) => {
         url: Cypress.env('apiUri') + '/Deals(' + id + ')',
         method: 'PATCH',
         body: { Title: title},
-        headers: credenciaisData.api
+        headers: {"User-Key": credenciaisData.api.userKey}
     }).then(response => {
         expect(response.status).to.eq(200)
         expect(response.body.value[0].Title).to.eq(title)
@@ -77,7 +77,7 @@ Cypress.Commands.add('deleteDeals', (credenciaisData, id) => {
     cy.request({
         url: Cypress.env('apiUri') + '/Deals(' + id + ')',
         method: 'DELETE',
-        headers: credenciaisData.api
+        headers: {"User-Key": credenciaisData.api.userKey}
     }).then(response => {
         expect(response.status).to.eq(200)
     })
@@ -87,7 +87,7 @@ Cypress.Commands.add('getDeals', (credenciaisData) => {
     cy.request({
         url: Cypress.env('apiUri') + '/Deals',
         method: 'GET',
-        headers: credenciaisData.api
+        headers: {"User-Key": credenciaisData.api.userKey}
     }).then(response => {
         expect(response.status).to.eq(200)
     })

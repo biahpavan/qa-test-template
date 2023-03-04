@@ -4,3 +4,4 @@ cypress/fixtures/negocio.json
 cypress/fixtures/credenciais.json
 cypress/screenshots
 cypress/videos
+allure-results/*

@@ -29,7 +29,7 @@ describe('Negócios - Web', () => {
         const nameDeal = faker.random.word() + ' ' + faker.random.numeric(8)
         cy.cadastraNovoNegocio(nameDeal)
         cy.consultaNegocioTitulo(nameDeal)
-        cy.get('div[uib-tooltip="'+ 'nameDeal' +'"]')
+        cy.get('div[uib-tooltip="'+ nameDeal +'"]')
                 .should('be.visible')
         cy.log('Título do negócio consultado: ' + nameDeal)
     })

@@ -1,48 +1,97 @@
-# QA Developer Test
+# Configurações do Projeto
 
-Parabéns por chegar até esta fase do processo seletivo para Desenvolvedor QA.
+[Cypress](https://www.cypress.io/)
 
-Aqui na Ploomes valorizamos muito uma qualidade: autonomia. Isso quer dizer que, uma vez que um problema é apresentado para um dos nossos colaboradores, cabe a este decidir qual a melhor solução.
+Requer instalação do Node.Js: https://nodejs.org/pt-br/download/
 
-Por isso,em nosso desafio, nos vamos setar alguns critérios mínimos para a aplicação e deixar você tomar as decisões mais profundas sobre a aplicação, como bibliotecas, estrutura da aplicação e etc.
+Requer que o Yarn esteja habilitado.
+Yarn é o gerenciador de pacotes utilizado no projeto.
+Para habilitar:
+- Inicia o prompt de comando como administrador
+- Execute o comando
+```
+$ corepack enable
+```
+- Verifique se o gerenciador de pacotes foi habilitado
+```
+$ yarn --version
+```
 
-# Critérios mínimos:
+Na pasta raiz do projeto executar o comando para adicionar o Cypress como uma dependência de desenvolvimento. 
+Obs.: O comando gera uma pasta node_modules(.gitignore).
+```
+$ yarn add cypress -D
+```
 
-- Aplicação em JavaScript
-- [Clean Code](https://becode.com.br/clean-code/)
-- Realizar teste na API do Ploomes nas seguintes entidades:
-  - CRUD em Clientes (/Contacts)
-  - CRUD em Negócios (/Deals)
-- Teste no Front-end simulando o uso do sistema semelhante ao realizado pelo usuário final. Devem ser testadas as seguintes funcionalidades:
-  - Login do sistema
-  - CRUD em Clientes
-  - CRUD em Negócios
+Na pasta cypress/fixtures é necessário criar um arquivo com nome "credencias" de extensão "json"(cypress/fixtures/credenciais.json) com o seguinte conteúdo:
+```
+{
+  "web": {
+    "email": "informe o seu e-mail de login na plataforma",
+    "password": "informe a sua senha de login na plataforma",
+    "nome": "informe o nome utilizado para criar a conta"
+  },
+  "api": {
+    "userKey": "informe o seu User-Key da API"
+  }
+}
+```
+Obs.: necessário trocar os valores dos objetos com as suas credenciais de acesso
 
-# Diferenciais:
 
-- Testar mais funcionalidades além das especificadas;
+# Execuções e relatórios
 
-# Entrega
+## Cypress CLI
 
-- Para a entrega, commitar na branch `main` os testes criados;
-- Incluir também instruções de execução, limitações, bugs conhecidos e quais seriam os próximos passos para a evolução do sistema;
+Executar os testes através da linha de comando.
 
-# Documentação da API do Ploomes:
+- Execução com navegador padrão(Eletron) em handless:
+```
+$ yarn cypress run
+```
 
-Para acessar a api do Ploomes você precisará da chave de integração, que você consegue pegar seguindo a documentação a seguir: https://developers.ploomes.com/
+- Execução com navegador selecionado em handless, exemplo:
+```
+$ yarn cypress run --browser chrome
+```
 
-# Criação de um conta trial para realização dos testes:
+Relatórios gerados no terminal e criação de evidências em vídeo e screenshot(apenas para falha) anexadas ao projeto.
 
-Você pode criar uma conta trial para realização do teste proposto através do link: https://www.ploomes.com/versao-trial
+## Cypress CLI com Allure Report
 
-# Helpers
+Executar os testes através da linha de comando com geração de relatório Allure Report.
 
-[O que é o módulo de clientes?](https://suporte.ploomes.com/pt-BR/articles/5452155-o-que-e-o-modulo-de-clientes)
+Requer instalção e configuração de ambiente para Java 8 ou superior.
 
-[Novo módulo de negócios](https://suporte.ploomes.com/pt-BR/articles/5452170-novo-modulo-de-negocios-08-08-19)
+[@Shelex - Cypress Allure Plugin](https://github.com/Shelex/cypress-allure-plugin)
 
-[Como criar negócios](https://suporte.ploomes.com/pt-BR/articles/5452169-como-criar-negocios)
+```
+$ yarn add allure-commandline -D
+$ yarn cypress run --env allure=true
+$ yarn alure
+$ yarn allure serve
+```
+Allure Report abre o navegador padrão com o relatório da execução.
 
-[Curso de como utilizar o módulo de clientes](https://universidade.ploomes.com/courses/clientes)
+Também é possível criar um servidor local para manter os históricos de execução:
 
-[Curso de como utilizar o workflow](https://universidade.ploomes.com/courses/workflow)
+```
+$ yarn allure generate ./allure-results/ -o ./report-server
+$ yarn add http-server -D
+$ yarn http-server report/server
+```
+
+## Cypress Interface
+
+Executar os testes pela interface gráfica do Cypress.
+
+- Execute o comando para abrir a interface do Cypress:
+```
+$ yarn cypress open
+```
+- Aguarde a interface carregar
+- Selecione a opção E2E Testing
+- Selecione o navegador na qual deseja que os testes sejam executados
+- Selecione a suite de testes
+
+Relatório exibido na interface.

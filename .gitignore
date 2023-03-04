@@ -1,5 +1,6 @@
 node_modules
 cypress/fixtures/cliente.json
 cypress/fixtures/negocio.json
+cypress/fixtures/credenciais.json
 cypress/screenshots
 cypress/videos
